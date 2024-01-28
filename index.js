@@ -7,21 +7,22 @@ const minutesInput = document.querySelector("input[name='minutes']")
 const secondsInput = document.querySelector("input[name='seconds']");
 
 
-
+const formatVal = (val) => {
+    if(+val % 10 === +val) {
+        return 0 + "" + val
+    }else{
+        return val;
+    }   
+}
 
 const interval = setInterval(() => {
     const h = new Date().getHours();
     const m = new Date().getMinutes();
     const s = new Date().getSeconds();
-    hours.innerText = h;
-    mins.innerText = m;
+    hours.innerText = formatVal(h);
+    mins.innerText = formatVal(m);
+    secs.innerText = formatVal(s)
     const date = new Date(new Date().getFullYear(),new Date().getMonth(), new Date().getDate(), h,m,s)
-
-    if(s % 10 == s) {
-        secs.innerText = 0 + "" + s;
-    }else{
-        secs.innerText = s
-    }
     const alarmTime = localStorage.getItem('alarmDate');
     if(alarmTime !== null && date.getTime() >= new Date(alarmTime).getTime()) {
         console.log('alarm is ringing')
