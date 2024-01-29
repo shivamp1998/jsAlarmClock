@@ -25,16 +25,20 @@ const interval = setInterval(() => {
     const date = new Date(new Date().getFullYear(),new Date().getMonth(), new Date().getDate(), h,m,s)
     const alarmTime = localStorage.getItem('alarmDate');
     if(alarmTime !== null && date.getTime() >= new Date(alarmTime).getTime()) {
-        console.log('alarm is ringing')
-    }else{
-        console.log('alarm not ringing', date.getTime(), new Date(alarmTime).getTime())
+        play()
     }
 }, 1000)
 
 const setAlarm = () => {
+    
     const h = hoursInput.value;
     const m = minutesInput.value;
     const s = secondsInput.value;
     const date = new Date(new Date().getFullYear(),new Date().getMonth(), new Date().getDate(), h,m,s)
     localStorage.setItem('alarmDate', date)
+}
+
+const play = () => {
+    const audio = document.querySelector('.audiotone');
+    audio.play();
 }

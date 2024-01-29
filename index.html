@@ -19,6 +19,12 @@
   <div class="submit">
     <button type="button" onclick="setAlarm()">Submit</button> 
   </div>
+  <div class="music" style="display: none;">
+    <audio class="audiotone" controls loop>
+      <source src="./ringtone.mp3" type="audio/mp3"> 
+    </audio>
+  </div>
+  <button onclick="play(event)" autoplay repeat> play </button>
 
 </body>
 <script src="index.js"></script>
