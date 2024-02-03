@@ -1,58 +1,31 @@
-const hours = document.querySelector('.hours');
-const mins = document.querySelector('.mins');
-const secs = document.querySelector('.secs')
-
-const hoursInput = document.querySelector("input[name='hours']")
-const minutesInput = document.querySelector("input[name='minutes']")
-const secondsInput = document.querySelector("input[name='seconds']");
-const canvas = document.querySelector("canvas");
+const canvasDiv = document.querySelector(".canvas-div")
+const canvas = document.querySelector(".clock-canvas");
 const ctx = canvas.getContext('2d');
-
-ctx.fillStyle = "rgb(255,0,0)"
-ctx.fillRect(0,0,50,50)
-ctx.clearRect(0,0,25,25)
-
-ctx.beginPath();
-ctx.moveTo(51,5);
-ctx.lineTo(51,51)
-ctx.lineTo(102, 51);
-ctx.lineTo(102, 5);
-ctx.closePath();
-ctx.fillStyle="rgb(0,255,0)"
-ctx.fill()
+canvas.height = 300;
+canvas.width = 300
+const radius = 100
+const clockX = canvas.height / 2;
+const clockY =  canvas.width / 2 ;
+let secondsHandAngle = -Math.PI / 2 + (new Date().getSeconds() + 1) * Math.PI / 30;
 
 
-const formatVal = (val) => {
-    if(+val % 10 === +val) {
-        return 0 + "" + val
-    }else{
-        return val;
-    }   
-}
+setInterval(() => {
+    const s = new Date().getSeconds()
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.arc(clockX, clockY, radius, 0, 2 * Math.PI); 
+    ctx.strokeStyle = 'black'; 
+    ctx.stroke(); 
 
-const interval = setInterval(() => {
-    const h = new Date().getHours();
-    const m = new Date().getMinutes();
-    const s = new Date().getSeconds();
-    hours.innerText = formatVal(h);
-    mins.innerText = formatVal(m);
-    secs.innerText = formatVal(s)
-    const date = new Date(new Date().getFullYear(),new Date().getMonth(), new Date().getDate(), h,m,s)
-    const alarmTime = sessionStorage.getItem('alarmDate');
-    if(alarmTime !== null && date.getTime() >= new Date(alarmTime).getTime()) {
-        play()
-    }
-}, 1000)
+    ctx.beginPath();
+    ctx.arc(clockX, clockY, 2, -Math.PI / 2 , 3 * Math.PI / 2, true)
+    ctx.fill();
 
-const setAlarm = () => {
-    const h = hoursInput.value;
-    const m = minutesInput.value;
-    const s = secondsInput.value;
-    const date = new Date(new Date().getFullYear(),new Date().getMonth(), new Date().getDate(), h,m,s)
-    sessionStorage.setItem('alarmDate', date)
-}
-
-const play = () => {
-    const audio = document.querySelector('.audiotone');
-    audio.play();
-}
+    ctx.beginPath();
+    ctx.moveTo(clockX, clockY);
+    const lineX = clockX + radius * Math.cos(secondsHandAngle);
+    const lineY = clockY + radius * Math.sin(secondsHandAngle);
+    ctx.lineTo(lineX, lineY);
+    ctx.stroke();
+    secondsHandAngle+= Math.PI / 30;
+}, 1000);

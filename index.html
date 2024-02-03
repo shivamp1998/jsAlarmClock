@@ -10,23 +10,9 @@
 </head>
 
 <body>
-  <h1><span class="hours">hh</span>:<span class="mins">mm</span>:<span class="secs">ss</span></h1>
-  <div class="alarm">
-    <input type="number" name="hours" min="0" max="23" />
-    <input type="number" name="minutes" min="0" max="59" />
-    <input type="number" name="seconds" min="0" max="59" />
+  <div class="canvas-div">
+    <canvas class="clock-canvas"></canvas>
   </div>
-  <div class="submit">
-    <button type="button" onclick="setAlarm()">Submit</button> 
-  </div>
-  <div class="music" style="display: none;">
-    <audio class="audiotone" controls loop>
-      <source src="./ringtone.mp3" type="audio/mp3"> 
-    </audio>
-  </div>
-  <canvas width="150" height="200" id="canvas"></canvas>
-  <button onclick="play(event)" autoplay repeat> play </button>
-
 </body>
 <script src="index.js"></script>
 

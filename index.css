@@ -1,7 +1,12 @@
-.alarm {
-    display: 'flex'
+.canvas-div {
+    border: 1px solid blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh
 }
 
-#canvas {
-    border: 5px solid red;
+.clock-canvas {
+    border: 1px solid red;
+    display: block
 }
