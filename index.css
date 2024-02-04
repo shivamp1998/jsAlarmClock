@@ -2,11 +2,13 @@
     border: 1px solid blue;
     display: flex;
     align-items: center;
+    flex-direction: column;
+    font-family: 'Cedarville Cursive';
     justify-content: center;
     height: 100vh
 }
 
 .clock-canvas {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: block
 }
