@@ -13,8 +13,29 @@
 
 <body>
   <div class="canvas-div">
-    <h1>  </h1>
+    <h3> Set Alarm For </h3>
+    <div class="alarm-setting">
+      <select class="hours">
+        <option>HH</option>
+      </select>
+      <select class="minutes">
+        <option>MM</option>
+      </select>
+      <select class="seconds">
+        <option>SS</option>
+      </select>
+      <select class="meredian">
+        <option>AM</option>
+        <option>PM</option>
+      </select>
+    </div>
+    <div>
+      <button onclick="handleAlarmSave()"> Submit </button>
+    </div>
     <canvas class="clock-canvas"></canvas>
+    <audio class="alarm">
+      <source src="ringtone.mp3" type="audio/mp3" >
+    </audio>
   </div>
 </body>
 <script src="index.js"></script>

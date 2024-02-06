@@ -3,9 +3,9 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    font-family: 'Cedarville Cursive';
     justify-content: center;
-    height: 100vh
+    height: 100vh;
+    gap: 10px
 }
 
 .clock-canvas {
