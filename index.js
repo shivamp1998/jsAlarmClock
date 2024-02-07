@@ -1,12 +1,14 @@
 const canvasDiv = document.querySelector(".canvas-div")
 const canvas = document.querySelector(".clock-canvas");
 const ctx = canvas.getContext('2d');
+const audio = document.querySelector('.alarm');
+sessionStorage.clear()
+
 canvas.height = 300;
 canvas.width = 300
 const radius = 100
 const clockX = canvas.height / 2;
 const clockY =  canvas.width / 2 ;
-
 /* starting position of all the needles */
 let secondsHandAngle = -Math.PI / 2 + (new Date().getSeconds() + 1) * Math.PI / 30;
 let minutesHandAngle = -Math.PI / 2 + (new Date().getMinutes() ) * Math.PI / 30;
@@ -29,8 +31,8 @@ const interval = setInterval(() => {
     console.log(alarmTime)
     if(alarmTime !== null) {
         console.log(alarmTime, new Date(alarmTime).getTime(), new Date().getTime())
-        if(new Date(alarmTime).getTime() === new Date().getTime()){
-            const audio = document.querySelector('.alarm');
+        if(new Date(alarmTime).getTime() >= new Date().getTime()){
+            console.log(audio)
             audio.play();
         }
 

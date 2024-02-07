@@ -1,3 +1,6 @@
+* {
+    font-family: 'Noto Sans', sans-serif;
+}
 .canvas-div {
     border: 1px solid blue;
     display: flex;
@@ -8,6 +11,46 @@
     gap: 10px
 }
 
+/* Select dropdown styling */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  select:hover {
+    border-color: #aaa;
+  }
+  
+  /* Button styling */
+  button {
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  
 .clock-canvas {
     /* border: 1px solid red; */
     display: block
