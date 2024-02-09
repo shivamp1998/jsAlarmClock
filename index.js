@@ -66,7 +66,7 @@ const interval = setInterval(() => {
   const lineX = clockX + (radius - 10) * Math.cos(secondsHandAngle);
   const lineY = clockY + (radius - 10) * Math.sin(secondsHandAngle);
   ctx.lineTo(lineX, lineY);
-  ctx.strokeStyle = "red";
+  ctx.strokeStyle = "magenta";
   ctx.stroke();
 
   //minute hand needle
