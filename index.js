@@ -3,6 +3,7 @@ const canvas = document.querySelector(".clock-canvas");
 const ctx = canvas.getContext("2d");
 const audio = document.querySelector(".alarm");
 const button = document.querySelector('button[type=submit]');
+const popupEl = document.querySelector('.alert-box');
 sessionStorage.clear();
 
 canvas.height = 300;
@@ -123,24 +124,33 @@ createOption(hours, hoursRange);
 createOption(minutes, minutesSecRange);
 createOption(seconds, minutesSecRange);
 
+const handleWarning = (message) => {
+  popupEl.innerHTML = `<span> ${message} <span>`;
+    popupEl.classList.add('show','warning');
+    setTimeout(() => {
+      popupEl.classList.remove('show');
+    }, 2000)
+} 
+
 const handleAlarmSave = () => {
   let h = +hours.value;
   const m = +minutes.value;
   const s = +seconds.value;
   const md = meridian.value;
+
+  if(!h || !m || !s) {
+    handleWarning('All the Values are needed!');
+    return;
+  }
+  console.log(h, m, s)
   if (md === "PM") h += 12;
   const alarmTime = new Date();
   alarmTime.setHours(h);
   alarmTime.setMinutes(m);
   alarmTime.setSeconds(s);
 
-  const popupEl = document.querySelector('.alert-box');
   if(new Date(alarmTime).getTime() <= new Date().getTime()) {
-    popupEl.innerHTML = `<span> Cannot Set Alarm For time less than now <span>`;
-    popupEl.classList.add('show','warning');
-    setTimeout(() => {
-      popupEl.classList.remove('show');
-    }, 2000)
+    handleWarning('Alarm time cannot be earlier than now.')
     return;
   }else{
     popupEl.innerHTML = `<span> Alarm set for time <span>`;
