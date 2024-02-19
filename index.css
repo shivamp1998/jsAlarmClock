@@ -17,7 +17,6 @@ body, html {
     align-items: center;
   }
   
-  /* Rest of your CSS for select, button, etc. */
   
 .canvas-div {
     border: 1px solid blue;
@@ -72,4 +71,28 @@ select {
 .clock-canvas {
     /* border: 1px solid red; */
     display: block
+}
+
+
+/* alert box styling */
+
+.alert-box {
+  position: fixed;
+  top: 20px;
+  right: -100%; /* Start from right side */
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 9999;
+  transition: right 0.5s ease; /* Transition effect for sliding */
+  
+}
+
+.alert-box.show {
+  right: 20px; /* Slide in to the screen */
+}
+
+.alert-box.warning {
+  background-color: #ffcc00;
 }

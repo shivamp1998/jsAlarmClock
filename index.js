@@ -2,6 +2,7 @@ const canvasDiv = document.querySelector(".canvas-div");
 const canvas = document.querySelector(".clock-canvas");
 const ctx = canvas.getContext("2d");
 const audio = document.querySelector(".alarm");
+const button = document.querySelector('button[type=submit]');
 sessionStorage.clear();
 
 canvas.height = 300;
@@ -42,6 +43,7 @@ const interval = setInterval(() => {
   if (alarmTime !== null) {
     if (new Date(alarmTime).getTime() <= new Date().getTime()) {
       audio.play();
+      button.innerHTML = "Stop Alarm!"
     }
   }
 
@@ -131,5 +133,23 @@ const handleAlarmSave = () => {
   alarmTime.setHours(h);
   alarmTime.setMinutes(m);
   alarmTime.setSeconds(s);
+
+  const popupEl = document.querySelector('.alert-box');
+  if(new Date(alarmTime).getTime() <= new Date().getTime()) {
+    popupEl.innerHTML = `<span> Cannot Set Alarm For time less than now <span>`;
+    popupEl.classList.add('show','warning');
+    setTimeout(() => {
+      popupEl.classList.remove('show');
+    }, 2000)
+    return;
+  }else{
+    popupEl.innerHTML = `<span> Alarm set for time <span>`;
+    popupEl.classList.remove('warning')
+    popupEl.classList.add('show');
+    setTimeout(() => {
+      popupEl.classList.remove('show')
+    }, 2000)
+  }
   sessionStorage.setItem("alarmTime", alarmTime);
+  popupEl.classList.remove('none')
 };
