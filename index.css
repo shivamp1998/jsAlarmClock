@@ -89,6 +89,10 @@ select {
   
 }
 
+.stop-button {
+  display: flex;
+}
+
 .alert-box.show {
   right: 20px; /* Slide in to the screen */
 }

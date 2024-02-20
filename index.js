@@ -44,7 +44,7 @@ const interval = setInterval(() => {
   if (alarmTime !== null) {
     if (new Date(alarmTime).getTime() <= new Date().getTime()) {
       audio.play();
-      button.innerHTML = "Stop Alarm!"
+      button.innerHTML = `<div class="stop-button"><button>Stop Alarm</button><button>Clear Alarm</button></div>`
     }
   }
 
@@ -138,18 +138,17 @@ const handleAlarmSave = () => {
   const s = +seconds.value;
   const md = meridian.value;
 
-  if(!h || !m || !s) {
+  if(h==null || m==null || s == null) {
     handleWarning('All the Values are needed!');
     return;
   }
-  console.log(h, m, s)
   if (md === "PM") h += 12;
   const alarmTime = new Date();
   alarmTime.setHours(h);
   alarmTime.setMinutes(m);
   alarmTime.setSeconds(s);
 
-  if(new Date(alarmTime).getTime() <= new Date().getTime()) {
+  if(new Date(alarmTime).getTime() < new Date().getTime()) {
     handleWarning('Alarm time cannot be earlier than now.')
     return;
   }else{
