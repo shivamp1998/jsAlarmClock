@@ -12,11 +12,9 @@ const radius = 100;
 const clockX = canvas.height / 2;
 const clockY = canvas.width / 2;
 /* starting position of all the needles */
-let secondsHandAngle =
-  -Math.PI / 2 + ((new Date().getSeconds() + 1) * Math.PI) / 30;
+let secondsHandAngle = -Math.PI / 2 + ((new Date().getSeconds() + 1) * Math.PI) / 30;
 let minutesHandAngle = -Math.PI / 2 + (new Date().getMinutes() * Math.PI) / 30;
-let hoursHandlAngle =
-  -Math.PI / 2 + ((new Date().getHours() % 12) * Math.PI) / 6;
+let hoursHandlAngle = -Math.PI / 2 + ((new Date().getHours() % 12) * Math.PI) / 6;
 
 /*looping over values from 1 to 12 to give clock time values*/
 let number = 0;
@@ -152,7 +150,7 @@ const handleAlarmSave = () => {
     handleWarning('Alarm time cannot be earlier than now.')
     return;
   }else{
-    popupEl.innerHTML = `<span> Alarm set for time <span>`;
+    popupEl.innerHTML = `<span> Alarm set for time ${h}:${m}:${s}:${md}<span>`;
     popupEl.classList.remove('warning')
     popupEl.classList.add('show');
     setTimeout(() => {
