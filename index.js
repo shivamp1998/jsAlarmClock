@@ -135,8 +135,7 @@ const handleAlarmSave = () => {
   const m = +minutes.value;
   const s = +seconds.value;
   const md = meridian.value;
-
-  if(h==null || m==null || s == null) {
+  if(h === NaN || m == NaN || s == NaN) {
     handleWarning('All the Values are needed!');
     return;
   }
