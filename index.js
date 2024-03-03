@@ -33,16 +33,31 @@ for (let i = -Math.PI / 2; i <= (3 * Math.PI) / 2; i += Math.PI / 6) {
   if (number == 12) break;
 }
 
+/* getting values when alarm is ringing*/
+const alarmHours = document.querySelector('.alarm-hours');
+const alarmMinutes = document.querySelector('.alarm-minutes');
+const alarmSeconds = document.querySelector('.alarm-seconds');
+
+/* toggle alarm states*/
+const heading = document.querySelector('.heading');
+const setAlarmDiv = document.querySelector('.alarm-setting');
+const ringingAlarmDiv = document.querySelector('.ringing-alarm');
+const cancelBtn = document.querySelector('#cancel');
+const submitBtn = document.querySelector('#submit');
+
+
 const interval = setInterval(() => {
   const h = new Date().getHours();
   const s = new Date().getSeconds();
   const m = new Date().getMinutes();
   const alarmTime = sessionStorage.getItem("alarmTime");
-  console.log(alarmTime);
   if (alarmTime !== null) {
     if (new Date(alarmTime).getTime() <= new Date().getTime()) {
       audio.play();
-      button.innerHTML = `<div class="stop-button"><button>Stop Alarm</button><button>Clear Alarm</button></div>`
+    }else{
+      alarmHours.innerHTML = getFormat(new Date(alarmTime).getHours() - h) + ":";
+      alarmMinutes.innerHTML = getFormat(new Date(alarmTime).getMinutes() - m) + ":";
+      alarmSeconds.innerHTML = getFormat(60 - s);
     }
   }
 
@@ -124,19 +139,24 @@ createOption(seconds, minutesSecRange);
 
 const handleWarning = (message) => {
   popupEl.innerHTML = `<span> ${message} <span>`;
-    popupEl.classList.add('show','warning');
-    setTimeout(() => {
-      popupEl.classList.remove('show');
-    }, 2000)
-} 
+  popupEl.classList.add('show','warning');
+  setTimeout(() => {
+    popupEl.classList.remove('show');
+  }, 2000)
+}
+
+const getFormat = (num) => {
+  if(num / 10) return num;
+  return '0'+num;
+}
 
 const handleAlarmSave = () => {
   let h = +hours.value;
   const m = +minutes.value;
   const s = +seconds.value;
   const md = meridian.value;
-  if(h === NaN || m == NaN || s == NaN) {
-    handleWarning('All the Values are needed!');
+  if(hours.value === 'HH' || minutes.value == 'MM' || seconds.value == 'SS') {
+    handleWarning('Please fill all required values!');
     return;
   }
   if (md === "PM") h += 12;
@@ -149,9 +169,13 @@ const handleAlarmSave = () => {
     handleWarning('Alarm time cannot be earlier than now.')
     return;
   }else{
-    popupEl.innerHTML = `<span> Alarm set for time ${h}:${m}:${s}:${md}<span>`;
+    popupEl.innerHTML = `<span> Alarm set for time ${getFormat(h)}:${getFormat(m)}:${getFormat(s)}:${md}<span>`;
     popupEl.classList.remove('warning')
     popupEl.classList.add('show');
+    heading.innerHTML = `Alarm will set off in`
+    setAlarmDiv.classList.add('none')
+    submitBtn.classList.add('none')
+    ringingAlarmDiv.classList.remove('none')
     setTimeout(() => {
       popupEl.classList.remove('show')
     }, 2000)

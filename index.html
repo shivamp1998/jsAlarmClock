@@ -19,7 +19,7 @@
     <span> Alarm has been set for this time </span>
   </div>
   <div class="canvas-div gradient-bg">
-    <h3> Set Alarm For </h3>
+    <h3 class="heading"> Set Alarm For </h3>
     <div class="alarm-setting">
       <select class="hours">
         <option>HH</option>
@@ -35,8 +35,17 @@
         <option>PM</option>
       </select>
     </div>
-    <div>
+    <div class="ringing-alarm none">
+      <span class="alarm-hours">HH:</span>
+      <span class="alarm-minutes">MM:</span>
+      <span class="alarm-seconds">SS</span>
+    </div>
+    
+    <div id="submit">
       <button onclick="handleAlarmSave()" type="submit"> Submit </button>
+    </div>
+    <div id="cancel" class="none">
+      <button type="button" class="cancel_btn"> Cancel </button>
     </div>
     <canvas class="clock-canvas"></canvas>
     <audio class="alarm">
