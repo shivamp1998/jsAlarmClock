@@ -146,8 +146,8 @@ const handleWarning = (message) => {
 }
 
 const getFormat = (num) => {
-  if(num / 10) return num;
-  return '0'+num;
+  if(num / 10 !== 0) return num;
+  else '0'+num;
 }
 
 const handleAlarmSave = () => {
