@@ -55,9 +55,9 @@ const interval = setInterval(() => {
     if (new Date(alarmTime).getTime() <= new Date().getTime()) {
       audio.play();
     }else{
-      alarmHours.innerHTML = getFormat(new Date(alarmTime).getHours() - h) + ":";
-      alarmMinutes.innerHTML = getFormat(new Date(alarmTime).getMinutes() - m) + ":";
-      alarmSeconds.innerHTML = getFormat(60 - s);
+      alarmHours.innerHTML = getFormat(new Date(alarmTime).getHours()) + ":";
+      alarmMinutes.innerHTML = getFormat(new Date(alarmTime).getMinutes()) + ":";
+      alarmSeconds.innerHTML = getFormat(new Date(alarmTime).getSeconds());
     }
   }
 
@@ -146,8 +146,8 @@ const handleWarning = (message) => {
 }
 
 const getFormat = (num) => {
-  if(num / 10 !== 0) return num;
-  else '0'+num;
+  if((num / 10) === 0) return '0'+num;
+  else return num;
 }
 
 const handleAlarmSave = () => {
@@ -172,7 +172,7 @@ const handleAlarmSave = () => {
     popupEl.innerHTML = `<span> Alarm set for time ${getFormat(h)}:${getFormat(m)}:${getFormat(s)}:${md}<span>`;
     popupEl.classList.remove('warning')
     popupEl.classList.add('show');
-    heading.innerHTML = `Alarm will set off in`
+    heading.innerHTML = `Alarm set for time`
     setAlarmDiv.classList.add('none')
     submitBtn.classList.add('none')
     ringingAlarmDiv.classList.remove('none')
