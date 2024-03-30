@@ -37,12 +37,13 @@ for (let i = -Math.PI / 2; i <= (3 * Math.PI) / 2; i += Math.PI / 6) {
 const alarmHours = document.querySelector('.alarm-hours');
 const alarmMinutes = document.querySelector('.alarm-minutes');
 const alarmSeconds = document.querySelector('.alarm-seconds');
+const alarmMeredian = document.querySelector('.alarm-meredian');
 
 /* toggle alarm states*/
 const heading = document.querySelector('.heading');
 const setAlarmDiv = document.querySelector('.alarm-setting');
 const ringingAlarmDiv = document.querySelector('.ringing-alarm');
-const cancelBtn = document.querySelector('#cancel');
+const cancelBtn = document.querySelector('#reset');
 const submitBtn = document.querySelector('#submit');
 
 
@@ -57,7 +58,8 @@ const interval = setInterval(() => {
     }else{
       alarmHours.innerHTML = getFormat(new Date(alarmTime).getHours()) + ":";
       alarmMinutes.innerHTML = getFormat(new Date(alarmTime).getMinutes()) + ":";
-      alarmSeconds.innerHTML = getFormat(new Date(alarmTime).getSeconds());
+      alarmSeconds.innerHTML = getFormat(new Date(alarmTime).getSeconds()); 
+      cancelBtn.classList.remove('none');
     }
   }
 
@@ -146,7 +148,7 @@ const handleWarning = (message) => {
 }
 
 const getFormat = (num) => {
-  if((num / 10) === 0) return '0'+num;
+  if(parseInt(num / 10) === 0) return '0'+num;
   else return num;
 }
 
