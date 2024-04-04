@@ -168,7 +168,7 @@ const handleAlarmSave = () => {
   alarmTime.setSeconds(s);
 
   if(new Date(alarmTime).getTime() < new Date().getTime()) {
-    handleWarning('Alarm time cannot be earlier than now.')
+    handleWarning('Time has passed.')
     return;
   }else{
     popupEl.innerHTML = `<span> Alarm set for time ${getFormat(h)}:${getFormat(m)}:${getFormat(s)}:${md}<span>`;
