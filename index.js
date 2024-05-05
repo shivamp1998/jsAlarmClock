@@ -47,15 +47,32 @@ const cancelBtn = document.querySelector('#reset');
 const submitBtn = document.querySelector('#submit');
 
 
+/* resetting alarm when ringing */
+
+const handleResetAlarm = () => {
+    audio.pause();
+    sessionStorage.setItem("alarmTime",null)
+    heading.innerHTML = `Set Alarm For`
+    setAlarmDiv.classList.remove('none')
+    submitBtn.classList.remove('none')
+    ringingAlarmDiv.classList.add('none')
+    cancelBtn.classList.add('none');
+}
+
+cancelBtn.addEventListener('click', handleResetAlarm);
+
+
+
 const interval = setInterval(() => {
   const h = new Date().getHours();
   const s = new Date().getSeconds();
   const m = new Date().getMinutes();
   const alarmTime = sessionStorage.getItem("alarmTime");
-  if (alarmTime !== null) {
+  if (alarmTime !== null && alarmTime !== 'null') {
     if (new Date(alarmTime).getTime() <= new Date().getTime()) {
       audio.play();
     }else{
+      console.log('alarmtime',alarmTime)
       alarmHours.innerHTML = getFormat(new Date(alarmTime).getHours()) + ":";
       alarmMinutes.innerHTML = getFormat(new Date(alarmTime).getMinutes()) + ":";
       alarmSeconds.innerHTML = getFormat(new Date(alarmTime).getSeconds()); 
